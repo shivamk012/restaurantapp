@@ -5,6 +5,7 @@ const cors = require('cors');
 const ajfdslkfa = require('body-parser');
 const path = require('path');
 const app = express();
+require('dotenv').config();
 // require('./routes')(app)
 app.use(cors());
 app.use(ajfdslkfa.json());

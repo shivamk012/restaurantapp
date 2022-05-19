@@ -11,7 +11,7 @@ app.use(cors());
 app.use(ajfdslkfa.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, ".." , "client", "build")))
-const port = process.env.PORT || '8080';
+const port = process.env.PORT ;
 
 let dbClient = null;
 

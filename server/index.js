@@ -11,11 +11,12 @@ app.use(cors());
 app.use(ajfdslkfa.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, ".." , "client", "build")))
-const port = process.env.PORT ;
+const port = process.env.PORT || '8080';
 
 let dbClient = null;
 
 async function main(){
+    console.log(port);
     const uri = 'mongodb+srv://admin:shivamk012@restaurant.wectp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
     const client = new MongoClient(uri);
     try{
@@ -101,5 +102,5 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, ".." , "client", "build", "index.html"));
 });
 
-app.listen(port);
 main();
+app.listen(port);

@@ -20,7 +20,7 @@ async function insertFood(client , data){
     }
 }
 
-async function insertUser(client , userData){
+export async function insertUser(client , userData){
     try{
         if(userData.isAdmin){
             userData.request = [];
@@ -33,7 +33,7 @@ async function insertUser(client , userData){
     }
 }
 
-async function login(client , userData){
+export async function login(client , userData){
     try{
         console.log(userData);
         const result = await client.db("FoodItems").collection("User").findOne({
@@ -46,7 +46,7 @@ async function login(client , userData){
     }
 }
 
-async function updateCart(client , userData){
+export async function updateCart(client , userData){
     try{
         console.log(userData);
         const result = await client.db("FoodItems").collection("User").updateOne({_id:userData.clientId} , {$set:{
@@ -59,7 +59,7 @@ async function updateCart(client , userData){
     }
 }
 
-async function addProduct(client , proData){
+export async function addProduct(client , proData){
     try{
         const result = await client.db("FoodItems").collection("Food").insertOne(proData);
         console.log(result);
@@ -70,7 +70,7 @@ async function addProduct(client , proData){
     }
 }
 
-async function sendRequest(client , OrderData){
+export async function sendRequest(client , OrderData){
     try{
         const cursor = await client.db("FoodItems").collection("User").findOne({
             isAdmin : true
@@ -92,7 +92,7 @@ async function sendRequest(client , OrderData){
     }
 }
 
-async function getRequestArr(client){
+export async function getRequestArr(client){
     try{
         const result = await client.db("FoodItems").collection("User").findOne({isAdmin : true});
         console.log(result);
@@ -101,5 +101,3 @@ async function getRequestArr(client){
         console.log(err);
     }
 }
-
-module.exports = {listDatabases , insertFood , insertUser , login , updateCart , addProduct , sendRequest , getRequestArr};
